@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>操行分数据快速生成模块</title>
+        <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="assets/css/stylesheet.css">
+        
+        <script src="assets/js/bootstrap.min.js"></script>
+        <script src="assets/js/core.js"></script>
+    </head>
+    <body>
+        <div id="configModal" style="display: none;"> 
+            <div class="modal-content">
+                <label>请上传学生信息和规则信息文件：</label><br>
+                <!--TODO:在这里添加文件校验函数-->
+                <label>学生信息文件：</label><input type="file" id="studentsFileInput"><br>
+                <label>规则信息文件：</label><input type="file" id="rulesFileInput"><br>
+                <button id="configCompleteButton" onclick="completeConfig()">完成</button>
+            </div>
+        </div>
+
+    </body>

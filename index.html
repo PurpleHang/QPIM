@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>操行分数据快速生成模块</title>
+        <link rel="stylesheet" type="text/css" href="assets/css/stylesheet.css">
+        <script src="assets/js/core.js"></script>
+    </head>
+    <body>
+        <div id="configModal" style="display: none;"> 
+            <div class="modal-content">
+                <label>请上传学生信息和规则信息文件：</label><br>
+                <!--TODO:在这里添加文件校验函数-->
+                <label>学生信息文件：</label><input type="file" id="studentsFileInput"><br>
+                <label>规则信息文件：</label><input type="file" id="rulesFileInput"><br>
+                <button id="configCompleteButton" onclick="completeConfig()">完成</button>
+            </div>
+        </div>
+        <div id="dataInputPage">
+            <h3 style="text-align: center;">操行分数据快速生成模块 Beta 2</h3>
+            <label>日期：</label>
+            <input type="date" id="recordDatePicker"></input>
+            <label>学期：</label>
+            <select id="periodSelect">
+                <option value="高一第一学期">高一第一学期</option>
+                <option value="高一第二学期">高一第二学期</option>
+                <option value="高二第一学期">高二第一学期</option>
+                <option value="高二第二学期">高二第二学期</option>
+                <option value="高三第一学期">高三第一学期</option>
+                <option value="高三第二学期">高三第二学期</option>
+            </select>
+            <label>周次：</label>
+            <select id="weekSelect">
+                <option value="假期第一周">假期第一周</option>
+                <option value="假期第二周">假期第二周</option>
+                <option value="假期第三周">假期第三周</option>
+                <option value="假期第四周">假期第四周</option>
+                <option value="假期第五周">假期第五周</option>
+                <option value="假期第六周">假期第六周</option>
+                <option value="第一周">第一周</option>
+                <option value="第二周">第二周</option>
+                <option value="第三周">第三周</option>
+                <option value="第四周">第四周</option>
+                <option value="第五周">第五周</option>
+                <option value="第六周">第六周</option>
+                <option value="第七周">第七周</option>
+                <option value="第八周">第八周</option>
+                <option value="第九周">第九周</option>
+                <option value="第十周">第十周</option>
+                <option value="第十一周">第十一周</option>
+                <option value="第十二周">第十二周</option>
+                <option value="第十三周">第十三周</option>
+                <option value="第十四周">第十四周</option>
+                <option value="第十五周">第十五周</option>
+                <option value="第十六周">第十六周</option>
+                <option value="第十七周">第十七周</option>
+                <option value="第十八周">第十八周</option>
+                <option value="第十九周">第十九周</option>
+                <option value="第二十周">第二十周</option>
+                <option value="第二十一周">第二十一周</option>
+                <option value="第二十二周">第二十二周</option>
+            </select>
+            <br>
+            <label>学生：</label>
+            <br>
+            <div class="students-checkbox-container" id="studentsCheckboxContainer">
+
+            </div>
+            <br>
+            <label>所属条款：</label>
+            <br>
+            <select name="ruleId" id="rulesDropdownSelect" style="width: 100%;">
+            </select>
+            <br>
+            <label>事由：</label>
+            <input type="text" id="descriptionEdit">
+            <button type="button" onclick="addRecords()">添加</button>
+            <hr>
+            <div id="recordContainer">
+                <label>数据表：</label>
+                <button onclick="generateCSV()" style="float: right;">输出数据到CSV</button>
+                <table id="recordTable">
+                    <tbody>
+                        <tr>
+                            <td><b>日期</b></td>
+                            <td><b>学期</b></td>
+                            <td><b>周次</b></td>
+                            <td><b>学生</b></td>
+                            <td><b>所属条款</b></td>
+                            <td><b>事由</b></td>
+                            <td><b>分数</b></td>
+                            <td><b>功能区</b></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+
+    <footer>
+        <br>
+        <a>Made by Mr.L.紫杭, please follow my </a><a href="https://github.com/PurpleHang/">Github</a><a>.</a>
+    </footer>
+</html>
