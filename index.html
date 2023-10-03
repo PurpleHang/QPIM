@@ -16,8 +16,73 @@
                 <button id="configCompleteButton" onclick="completeConfig()">完成</button>
             </div>
         </div>
+        <div id="editModal" style="display: none;">
+            <div class="modal-content">
+            <label>ID:</label>
+            <input type="number" id="editModalIdInput" disabled></input>
+            <label>日期：</label>
+            <input type="date" id="editModalRecordDatePicker"></input>
+            <label>学期：</label>
+            <select id="editModalPeriodSelect">
+                <option value="高一第一学期">高一第一学期</option>
+                <option value="高一第二学期">高一第二学期</option>
+                <option value="高二第一学期">高二第一学期</option>
+                <option value="高二第二学期">高二第二学期</option>
+                <option value="高三第一学期">高三第一学期</option>
+                <option value="高三第二学期">高三第二学期</option>
+            </select>
+            <label>周次：</label>
+            <select id="editModalWeekSelect">
+                <option value="假期第一周">假期第一周</option>
+                <option value="假期第二周">假期第二周</option>
+                <option value="假期第三周">假期第三周</option>
+                <option value="假期第四周">假期第四周</option>
+                <option value="假期第五周">假期第五周</option>
+                <option value="假期第六周">假期第六周</option>
+                <option value="第一周">第一周</option>
+                <option value="第二周">第二周</option>
+                <option value="第三周">第三周</option>
+                <option value="第四周">第四周</option>
+                <option value="第五周">第五周</option>
+                <option value="第六周">第六周</option>
+                <option value="第七周">第七周</option>
+                <option value="第八周">第八周</option>
+                <option value="第九周">第九周</option>
+                <option value="第十周">第十周</option>
+                <option value="第十一周">第十一周</option>
+                <option value="第十二周">第十二周</option>
+                <option value="第十三周">第十三周</option>
+                <option value="第十四周">第十四周</option>
+                <option value="第十五周">第十五周</option>
+                <option value="第十六周">第十六周</option>
+                <option value="第十七周">第十七周</option>
+                <option value="第十八周">第十八周</option>
+                <option value="第十九周">第十九周</option>
+                <option value="第二十周">第二十周</option>
+                <option value="第二十一周">第二十一周</option>
+                <option value="第二十二周">第二十二周</option>
+            </select>
+            <br>
+            <label>学生：</label>
+            <br>
+            <select id="editModalStudentSelect">
+
+            </select>
+            <br>
+            <label>所属条款：</label>
+            <br>
+            <select name="ruleId" id="editModalRulesDropdownSelect" style="width: 100%;">
+            </select>
+            <br>
+            <label>事由：</label>
+            <input type="text" id="editModalDescriptionEdit">
+            <label>分数：</label>
+            <input type="number" id="editModalPointEdit">
+            <button type="button" style="float: right;" onclick="completeEdit()">修改</button>
+            </div>
+        </div>
         <div id="dataInputPage">
-            <h3 style="text-align: center;">操行分数据快速生成模块 Beta 2</h3>
+            <h3 style="text-align: center;">操行分数据快速生成模块 Beta 3</h3>
             <label>日期：</label>
             <input type="date" id="recordDatePicker"></input>
             <label>学期：</label>
@@ -69,7 +134,7 @@
             <br>
             <label>所属条款：</label>
             <br>
-            <select name="ruleId" id="rulesDropdownSelect" style="width: 100%;">
+            <select title="ruleId" id="rulesDropdownSelect" style="width: 100%;">
             </select>
             <br>
             <label>事由：</label>

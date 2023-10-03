@@ -95,21 +95,63 @@ class Record{
     }
 }
 
-function changeRecord(element) {
-    alert("Not done yet!");
-    return;
-    console.log(Number(element.id) + 1);
-    var selectedRow = document.getElementById("recordTable").rows[Number(element.id) + 1];
-    var dateCell = selectedRow.cells[0];
-    var periodCell = selectedRow.cells[1];
-    var weekCell = selectedRow.cells[2];
-    var studentCell = selectedRow.cells[3];
-    var ruleCell = selectedRow.cells[4];
-    var descriptionCell = selectedRow.cells[5];
-    var pointCell = selectedRow.cells[6];
-    var functionCell = selectedRow.cells[7];
+function completeEdit() {
+    var editModal = document.getElementById("editModal");  
+    var editModalIdInput = document.getElementById("editModalIdInput");
+    var editModalRecordDatePicker = document.getElementById("editModalRecordDatePicker");
+    var editModalPeriodSelect = document.getElementById("editModalPeriodSelect");
+    var editModalWeekSelect = document.getElementById("editModalWeekSelect");
+    var editModalStudentSelect = document.getElementById("editModalStudentSelect");
+    var editModalRulesDropdownSelect = document.getElementById("editModalRulesDropdownSelect");
+    var editModalDescriptionEdit = document.getElementById("editModalDescriptionEdit");
+    var editModalPointEdit = document.getElementById("editModalPointEdit");
 
-    dateCell.innerHTML = String().concat('<input type=date value="', records[element.id].RecordDate, '"></input>');
+    var id = editModalIdInput.value;
+    records[id].RecordDate = editModalRecordDatePicker.value;
+    records[id].RecordPeriod = editModalPeriodSelect.value;
+    records[id].RecordWeek = editModalWeekSelect.value;
+    for(i=0;i<students.length;i++) {
+        if(students[i].Name == editModalStudentSelect.value) {
+            records[id].TargetStudent = students[i];
+        }
+    }
+    for(i=0;i<rules.length;i++) {
+        if(rules[i].RuleId == editModalRulesDropdownSelect.value) {
+            records[id].Rule = rules[i];
+        }
+    }
+    records[id].Description = editModalDescriptionEdit.value;
+    records[id].Value = editModalPointEdit.value;
+    refreshRecords();
+    editModal.style.display = "none";
+}
+
+function showEditForm(id) {
+    var editModal = document.getElementById("editModal");  
+    var editModalIdInput = document.getElementById("editModalIdInput");
+    var editModalRecordDatePicker = document.getElementById("editModalRecordDatePicker");
+    var editModalPeriodSelect = document.getElementById("editModalPeriodSelect");
+    var editModalWeekSelect = document.getElementById("editModalWeekSelect");
+    var editModalStudentSelect = document.getElementById("editModalStudentSelect");
+    var editModalRulesDropdownSelect = document.getElementById("editModalRulesDropdownSelect");
+    var editModalDescriptionEdit = document.getElementById("editModalDescriptionEdit");
+    var editModalPointEdit = document.getElementById("editModalPointEdit");
+
+    editModalIdInput.value = id;
+    editModalRecordDatePicker.value = records[id].RecordDate;
+    editModalPeriodSelect.value = records[id].RecordPeriod;
+    editModalWeekSelect.value = records[id].RecordWeek;
+    editModalStudentSelect.value = records[id].TargetStudent.Name;
+    editModalRulesDropdownSelect.value = records[id].Rule.RuleId;
+    editModalDescriptionEdit.value = records[id].Description;
+    editModalPointEdit.value = records[id].Value;
+
+    editModal.style.display = "block";  
+}
+
+function changeRecord(element) {
+    console.log(element.id);
+    showEditForm(element.id);
 }
 
 function deleteRecord(element) {
@@ -139,7 +181,7 @@ function refreshRecords() {
         studentCell.innerHTML = records[i].TargetStudent.Name;
         ruleCell.innerHTML = records[i].Rule.RuleId;
         descriptionCell.innerHTML = records[i].Description;
-        pointCell.innerHTML = records[i].Rule.Value;
+        pointCell.innerHTML = records[i].Value;
         functionCell.innerHTML = String().concat('<img class="edit-button" src="assets/img/edit_icon.svg" alt="修改" onclick="changeRecord(this)" id="', i.toString(), '">', '<img class="delete-button" src="assets/img/delete_icon.svg" alt="删除" onclick="deleteRecord(this)" id="', i.toString(), '">');
 
         document.getElementById('recordContainer').appendChild(table);
@@ -215,15 +257,29 @@ function loadStudents() {
         studentsCheckboxContainer.appendChild(label);
         studentsCheckboxContainer.appendChild(br);
     }
+    var editModalStudentSelect = document.getElementById("editModalStudentSelect");
+    for(i=0;i<students.length;i++) {
+        var option = document.createElement("option");
+        option.text = students[i].DisplayName;
+        option.value = students[i].Name;
+        editModalStudentSelect.add(option);
+    }
 }
 
 function loadRules() {
-    var rulesSelect = document.getElementsByName("ruleId")[0];
+    var rulesSelect = document.getElementById("rulesDropdownSelect");
     for(i=0;i<rules.length;i++) {
         var option = document.createElement("option");
         option.text = rules[i].RuleId.toString() + "丨" + rules[i].Description;
         option.value = rules[i].RuleId.toString();
         rulesSelect.add(option);
+    }
+    var editFormRulesDropdownSelect = document.getElementById("editModalRulesDropdownSelect");
+    for(i=0;i<rules.length;i++) {
+        var option = document.createElement("option");
+        option.text = rules[i].RuleId.toString() + "丨" + rules[i].Description;
+        option.value = rules[i].RuleId.toString();
+        editFormRulesDropdownSelect.add(option);
     }
 }
 
